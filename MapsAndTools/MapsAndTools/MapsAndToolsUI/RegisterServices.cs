@@ -7,5 +7,14 @@ public static class RegisterServices
 		builder.Services.AddRazorPages();
 		builder.Services.AddServerSideBlazor();
 		builder.Services.AddMemoryCache();
+
+		builder.Services.AddSingleton<IDbConnection, DbConnection>();
+		builder.Services.AddSingleton<ICallFlowData, MongoCallFlowData>();
+		builder.Services.AddSingleton<ICallTypeData, MongoCallTypeData>();
+		builder.Services.AddSingleton<IFdcData, MongoFdcData>();
+		builder.Services.AddSingleton<ITemplateData, MongoTemplateData>();
+		builder.Services.AddSingleton<ITeamMemberData, MongoTeamMemberData>();
+		builder.Services.AddSingleton<IKbArticleData, MongoKbArticleData>();
+		builder.Services.AddSingleton<IDailyExpectationsData, MongoDailyExpectationsData>();
 	}
 }
