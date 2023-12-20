@@ -4,7 +4,7 @@ public class MongoKbArticleData : IKbArticleData
 {
 	private readonly IMongoCollection<KbArticleModel> _articles;
 	private readonly IMemoryCache _cache;
-	private const string cacheName = "ArticlesData";
+	private const string CacheName = "ArticlesData";
 
 	public MongoKbArticleData(IDbConnection db, IMemoryCache cache)
 	{
@@ -14,13 +14,13 @@ public class MongoKbArticleData : IKbArticleData
 
 	public async Task<List<KbArticleModel>> GetAllArticles()
 	{
-		var output = _cache.Get<List<KbArticleModel>>(cacheName);
+		var output = _cache.Get<List<KbArticleModel>>(CacheName);
 		if (output is null)
 		{
 			var results = await _articles.FindAsync(_ => true);
 			output = results.ToList();
 
-			_cache.Set(cacheName, output);
+			_cache.Set(CacheName, output);
 		}
 
 		return output;

@@ -4,7 +4,7 @@ public class MongoTeamMemberData : ITeamMemberData
 {
 	private readonly IMongoCollection<TeamMemberModel> _teamMembers;
 	private readonly IMemoryCache _cache;
-	private const string cacheName = "TeamMembersData";
+	private const string CacheName = "TeamMembersData";
 
 	public MongoTeamMemberData(IDbConnection db, IMemoryCache cache)
 	{
@@ -14,13 +14,13 @@ public class MongoTeamMemberData : ITeamMemberData
 
 	public async Task<List<TeamMemberModel>> GetAllTeamMembers()
 	{
-		var output = _cache.Get<List<TeamMemberModel>>(cacheName);
+		var output = _cache.Get<List<TeamMemberModel>>(CacheName);
 		if (output is null)
 		{
 			var results = await _teamMembers.FindAsync(_ => true);
 			output = results.ToList();
 
-			_cache.Set(cacheName, output, TimeSpan.FromDays(1));
+			_cache.Set(CacheName, output, TimeSpan.FromDays(1));
 		}
 
 		return output;

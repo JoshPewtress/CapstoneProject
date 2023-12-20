@@ -4,7 +4,7 @@ public class MongoFdcData : IFdcData
 {
 	private readonly IMongoCollection<FdcModel> _fdcs;
 	private readonly IMemoryCache _cache;
-	private const string cacheName = "FdcsData";
+	private const string CacheName = "FdcsData";
 
 	public MongoFdcData(IDbConnection db, IMemoryCache cache)
 	{
@@ -14,13 +14,13 @@ public class MongoFdcData : IFdcData
 
 	public async Task<List<FdcModel>> GetAllFdcs()
 	{
-		var output = _cache.Get<List<FdcModel>>(cacheName);
+		var output = _cache.Get<List<FdcModel>>(CacheName);
 		if (output is null)
 		{
 			var results = await _fdcs.FindAsync(_ => true);
 			output = results.ToList();
 
-			_cache.Set(cacheName, output, TimeSpan.FromDays(1));
+			_cache.Set(CacheName, output, TimeSpan.FromDays(1));
 		}
 
 		return output;

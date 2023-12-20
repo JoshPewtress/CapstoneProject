@@ -4,7 +4,7 @@ public class MongoTemplateData : ITemplateData
 {
 	private readonly IMongoCollection<TemplateModel> _templates;
 	private readonly IMemoryCache _cache;
-	private const string cacheName = "TemplatesData";
+	private const string CacheName = "TemplatesData";
 
 	public MongoTemplateData(IDbConnection db, IMemoryCache cache)
 	{
@@ -14,13 +14,13 @@ public class MongoTemplateData : ITemplateData
 
 	public async Task<List<TemplateModel>> GetAllTemplates()
 	{
-		var output = _cache.Get<List<TemplateModel>>(cacheName);
+		var output = _cache.Get<List<TemplateModel>>(CacheName);
 		if (output is null)
 		{
 			var results = await _templates.FindAsync(_ => true);
 			output = results.ToList();
 
-			_cache.Set(cacheName, output, TimeSpan.FromDays(1));
+			_cache.Set(CacheName, output, TimeSpan.FromDays(1));
 		}
 
 		return output;

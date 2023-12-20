@@ -4,7 +4,7 @@ public class MongoCallTypeData : ICallTypeData
 {
 	private readonly IMongoCollection<CallTypeModel> _callTypes;
 	private readonly IMemoryCache _cache;
-	private const string cacheName = "CallTypesData";
+	private const string CacheName = "CallTypesData";
 
 	public MongoCallTypeData(IDbConnection db, IMemoryCache cache)
 	{
@@ -13,13 +13,13 @@ public class MongoCallTypeData : ICallTypeData
 
 	public async Task<List<CallTypeModel>> GetAllCallTypes()
 	{
-		var output = _cache.Get<List<CallTypeModel>>(cacheName);
+		var output = _cache.Get<List<CallTypeModel>>(CacheName);
 		if (output is null)
 		{
 			var results = await _callTypes.FindAsync(_ => true);
 			output = results.ToList();
 
-			_cache.Set(cacheName, output);
+			_cache.Set(CacheName, output);
 		}
 
 		return output;

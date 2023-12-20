@@ -4,7 +4,7 @@ public class MongoCallFlowData : ICallFlowData
 {
 	private readonly IMongoCollection<CallFlowModel> _callFlows;
 	private readonly IMemoryCache _cache;
-	private const string cacheName = "CallFlowsData";
+	private const string CacheName = "CallFlowsData";
 
 	public MongoCallFlowData(IDbConnection db, IMemoryCache cache)
 	{
@@ -14,13 +14,13 @@ public class MongoCallFlowData : ICallFlowData
 
 	public async Task<List<CallFlowModel>> GetAllCallFlows()
 	{
-		var output = _cache.Get<List<CallFlowModel>>(cacheName);
+		var output = _cache.Get<List<CallFlowModel>>(CacheName);
 		if (output is null)
 		{
 			var results = await _callFlows.FindAsync(_ => true);
 			output = results.ToList();
 
-			_cache.Set(cacheName, output, TimeSpan.FromDays(1));
+			_cache.Set(CacheName, output, TimeSpan.FromDays(1));
 		}
 
 		return output;

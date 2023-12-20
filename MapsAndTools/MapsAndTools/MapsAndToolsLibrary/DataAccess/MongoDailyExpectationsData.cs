@@ -4,7 +4,7 @@ public class MongoDailyExpectationsData : IDailyExpectationsData
 {
 	private readonly IMongoCollection<DailyExpectationModel> _expectations;
 	private readonly IMemoryCache _cache;
-	private const string cacheName = "ExpectationsData";
+	private const string CacheName = "ExpectationsData";
 
 	public MongoDailyExpectationsData(IDbConnection db, IMemoryCache cache)
 	{
@@ -14,13 +14,13 @@ public class MongoDailyExpectationsData : IDailyExpectationsData
 
 	public async Task<List<DailyExpectationModel>> GetAllExpectations()
 	{
-		var output = _cache.Get<List<DailyExpectationModel>>(cacheName);
+		var output = _cache.Get<List<DailyExpectationModel>>(CacheName);
 		if (output is null)
 		{
 			var results = await _expectations.FindAsync(_ => true);
 			output = results.ToList();
 
-			_cache.Set(cacheName, output);
+			_cache.Set(CacheName, output);
 		}
 
 		return output;
