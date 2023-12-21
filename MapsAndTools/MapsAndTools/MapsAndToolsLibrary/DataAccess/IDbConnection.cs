@@ -5,8 +5,6 @@ public interface IDbConnection
 {
 	IMongoCollection<CallFlowModel> CallFlowCollection { get; }
 	string CallFlowCollectionName { get; }
-	IMongoCollection<CallTypeModel> CallTypeCollection { get; }
-	string CallTypeCollectionName { get; }
 	MongoClient Client { get; }
 	IMongoCollection<DailyExpectationModel> DailyExpectationCollection { get; }
 	string DailyExpectationCollectionName { get; }

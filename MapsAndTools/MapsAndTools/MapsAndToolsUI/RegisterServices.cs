@@ -10,7 +10,6 @@ public static class RegisterServices
 
 		builder.Services.AddSingleton<IDbConnection, DbConnection>();
 		builder.Services.AddSingleton<ICallFlowData, MongoCallFlowData>();
-		builder.Services.AddSingleton<ICallTypeData, MongoCallTypeData>();
 		builder.Services.AddSingleton<IFdcData, MongoFdcData>();
 		builder.Services.AddSingleton<ITemplateData, MongoTemplateData>();
 		builder.Services.AddSingleton<ITeamMemberData, MongoTeamMemberData>();

@@ -11,7 +11,6 @@ public class DbConnection : IDbConnection
 	private string _connectionId = "MongoDB";
 	public string DbName { get; private set; }
 	public string CallFlowCollectionName { get; private set; } = "callflows";
-	public string CallTypeCollectionName { get; private set; } = "calltypes";
 	public string FdcCollectionName { get; private set; } = "fdcs";
 	public string TemplateCollectionName { get; private set; } = "templates";
 	public string TeamMemberCollectionName { get; private set; } = "teammembers";
@@ -20,7 +19,6 @@ public class DbConnection : IDbConnection
 
 	public MongoClient Client { get; private set; }
 	public IMongoCollection<CallFlowModel> CallFlowCollection { get; private set; }
-	public IMongoCollection<CallTypeModel> CallTypeCollection { get; private set; }
 	public IMongoCollection<FdcModel> FdcCollection { get; private set; }
 	public IMongoCollection<TemplateModel> TemplateCollection { get; private set; }
 	public IMongoCollection<TeamMemberModel> TeamMemberCollection { get; private set; }
@@ -35,7 +33,6 @@ public class DbConnection : IDbConnection
 		_db = Client.GetDatabase(DbName);
 
 		CallFlowCollection = _db.GetCollection<CallFlowModel>(CallFlowCollectionName);
-		CallTypeCollection = _db.GetCollection<CallTypeModel>(CallTypeCollectionName);
 		FdcCollection = _db.GetCollection<FdcModel>(FdcCollectionName);
 		TemplateCollection = _db.GetCollection<TemplateModel>(TemplateCollectionName);
 		TeamMemberCollection = _db.GetCollection<TeamMemberModel>(TeamMemberCollectionName);

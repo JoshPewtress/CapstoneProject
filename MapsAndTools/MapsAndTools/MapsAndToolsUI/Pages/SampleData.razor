@@ -1,0 +1,94 @@
+﻿@page "/Sampledata"
+@inject IFdcData fdcData
+@inject ICallFlowData callFlowData
+
+<h3>Sample Data</h3>
+
+@if (fdcsCreated)
+{
+	<h4>FDCs have been created</h4>
+}
+else
+{
+	<button class="btn btn-primary" @onclick="CreateFdcs">Create FDCs</button>
+}
+
+@if (callFlowsCreated)
+{
+	<h4>Call Flows have been created</h4>
+}
+else
+{
+	<button class="btn btn-primary" @onclick="CreateCallFlows">Create Call Flows</button>
+}
+
+
+
+@code {
+	private bool fdcsCreated = false;
+	private bool callFlowsCreated = false;
+
+	private async Task CreateFdcs()
+	{
+		var fdcs = await fdcData.GetAllFdcs();
+
+		if (fdcs?.Count > 0)
+		{
+			return;
+		}
+
+		FdcModel fdc = new()
+		{
+			FdcName = "Baltimore",
+			FdcId = "5830",
+			FdcPhoneNumber = "5555555555"
+		};
+		await fdcData.CreateFdc(fdc);
+
+		fdc = new()
+		{
+			FdcName = "Dallas",
+			FdcId = "5824",
+			FdcPhoneNumber = "6666666666"
+		};
+		await fdcData.CreateFdc(fdc);
+
+		fdc = new()
+		{
+			FdcName = "Denver",
+			FdcId = "5856",
+			FdcPhoneNumber = "2222222222"
+		};
+		await fdcData.CreateFdc(fdc);
+
+		fdcsCreated = true;
+	}
+
+	private async Task CreateCallFlows()
+	{
+		var flows = await callFlowData.GetAllCallFlows();
+
+		if (flows?.Count > 0)
+		{
+			return;
+		}
+
+		CallFlowModel flow = new()
+			{
+				Title = "Damaged Product",
+				Description = "Customer's delivery contained damaged product.",
+				CallType = "Damaged Product"
+	};
+		await callFlowData.CreateCallFlow(flow);
+
+		flow = new()
+		{
+			Title = "Customer wants a Jobsite Pickup",
+			Description = "Contact the nearest store to the delivery zip-code. Partner with store representative to create a jobsite pickup.",
+			CallType = "Damaged Product"
+		};
+		await callFlowData.CreateCallFlow(flow);
+
+		callFlowsCreated = true;
+	}
+}
