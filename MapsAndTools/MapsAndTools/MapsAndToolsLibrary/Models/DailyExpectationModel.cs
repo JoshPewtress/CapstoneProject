@@ -6,5 +6,5 @@ public class DailyExpectationModel
 	[BsonRepresentation(BsonType.ObjectId)]
 	public string Id { get; set; }
 	public string Expectation { get; set; }
-	public string Contents { get; set; }
+	public List<string> Contents { get; set; }
 }

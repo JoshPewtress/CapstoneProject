@@ -1,6 +1,7 @@
 ﻿@page "/Sampledata"
 @inject IFdcData fdcData
 @inject ICallFlowData callFlowData
+@inject IDailyExpectationsData dailyExpectationsData
 
 <h3>Sample Data</h3>
 
@@ -22,11 +23,21 @@ else
 	<button class="btn btn-primary" @onclick="CreateCallFlows">Create Call Flows</button>
 }
 
+@if (dailyExpectationsCreated)
+{
+	<h4>Daily Expectations have been created</h4>
+}
+else
+{
+	<button class="btn btn-primary" @onclick="CreateDailyExpectations">Create Daily Expectations</button>
+}
+
 
 
 @code {
 	private bool fdcsCreated = false;
 	private bool callFlowsCreated = false;
+	private bool dailyExpectationsCreated = false;
 
 	private async Task CreateFdcs()
 	{
@@ -90,5 +101,69 @@ else
 		await callFlowData.CreateCallFlow(flow);
 
 		callFlowsCreated = true;
+	}
+
+	private async Task CreateDailyExpectations()
+	{
+		var expectations = await dailyExpectationsData.GetAllExpectations();
+
+		if (expectations?.Count > 0)
+		{
+			return;
+		}
+
+		DailyExpectationModel expectation = new()
+			{
+				Expectation = "Teamwork",
+				Contents = new List<string>
+				{
+					"Working as a collaborative group to resolve issues, tackle new projects, and support new ideas/suggestions" + 
+					" without judgement is at the core of the 1SCST. We value Respect for All People in all things we do."
+				}
+			};
+		await dailyExpectationsData.CreateExpectation(expectation);
+
+		expectation = new()
+			{
+				Expectation = "Special Projects",
+				Contents = new List<string>
+				{
+					"This is a part of the work we do within the 1SCST, it is a requirement as a part of this team to answer inbound" + 
+					" calls and assist with back-office work, it is not optional.",
+
+					"Understand productivity expectations regarding FDC cases, reschedule lists or additional projects/pilots we may" + 
+					" assist with in order to meet the service level expectations of our supply chain partners."
+				}
+			};
+		await dailyExpectationsData.CreateExpectation(expectation);
+
+		expectation = new()
+			{
+				Expectation = "Teams & Outlook",
+				Contents = new List<string>
+				{
+					"Make sure you are logged in to both Teams and Outlook during your shift, and aware of" +
+					" updates/communications from your leadership team.",
+
+					"Given our virtual environment, it is expected to be available and aware of messages from" +
+					" leadership and peers while you are in an active aux (not break/lunch/logged off)."
+				}
+			};
+		await dailyExpectationsData.CreateExpectation(expectation);
+
+		expectation = new()
+			{
+				Expectation = "NICE Schedule/ Events",
+				Contents = new List<string>
+				{
+					"Be mindful of your daily schedule in NICE for 1:1’s, team meetings, trainings, meetings etc.",
+
+					"Requesting time off should also be requested as early as possible for expected needs." +
+					" As always, time off is approved/denied based on business needs."
+				}
+			};
+		await dailyExpectationsData.CreateExpectation(expectation);
+
+		dailyExpectationsCreated = true;
 	}
 }
