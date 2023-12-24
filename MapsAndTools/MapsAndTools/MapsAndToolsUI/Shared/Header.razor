@@ -2,56 +2,38 @@
 
 <div class="row maps-header">
     <div class="col-12">
-        <h1 @onclick="(() => LoadHomePage())">1SC Maps and Tools</h1>
+        <h1 class="cursor-pointer" @onclick="(() => LoadHomePage())">1SC Maps and Tools</h1>
         <div class="oi oi-external-link" />
     </div>
 </div>
-<div class="row maps-nav text-center">
-    <div class="col" @onclick="(() => LoadCallFlowPage())">
-        <span>Call Flow</span>
-    </div>
-    <div class="col" @onclick="(() => LoadFdcListPage())">
-        <span>FDC List</span>
-    </div>
-    <div class="col" @onclick="(() => LoadTemplatePage())">
-        <span>Templates</span>
-    </div>
-    <div class="col" @onclick="(() => LoadBackOfficePage())">
-        <span>Back Office</span>
-    </div>
-    <div class="col" @onclick="(() => LoadKbArticlePage())">
-        <span>1SC KB Articles</span>
-    </div>
+<div class="row maps-nav text-center cursor-pointer">
+    @NavLink("Call Flow", "/CallFlow", LoadPage)
+    @NavLink("FDC List", "/FdcList", LoadPage)
+    @NavLink("Templates", "/EmailTemplate", LoadPage)
+    @NavLink("Back Office", "/BackOffice", LoadPage)
+    @NavLink("1SC KB Articles", "/KbArticle", LoadPage)
 </div>
 
 @code {
+    private void LoadPage(string pageUrl)
+    {
+        navManager.NavigateTo(pageUrl);
+    }
+
     private void LoadHomePage()
     {
         navManager.NavigateTo("/");
     }
 
-    private void LoadCallFlowPage()
+    private RenderFragment NavLink(string text, string href, Action<string> onClick)
     {
-        navManager.NavigateTo("/CallFlow");
-    }
-
-    private void LoadFdcListPage()
-    {
-        navManager.NavigateTo("/FdcList");
-    }
-
-    private void LoadTemplatePage()
-    {
-        navManager.NavigateTo("/EmailTemplate");
-    }
-
-    private void LoadBackOfficePage()
-    {
-        navManager.NavigateTo("/BackOffice");
-    }
-
-    private void LoadKbArticlePage()
-    {
-        navManager.NavigateTo("/KbArticle");
+        return builder =>
+        {
+            builder.OpenElement(0, "div");
+            builder.AddAttribute(1, "class", "col");
+            builder.AddAttribute(2, "onclick", EventCallback.Factory.Create(this, () => onClick.Invoke(href)));
+            builder.AddContent(3, $"{text}");
+            builder.CloseElement();
+        };
     }
 }

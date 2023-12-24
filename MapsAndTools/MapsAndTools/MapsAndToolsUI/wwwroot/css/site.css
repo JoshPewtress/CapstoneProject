@@ -67,6 +67,10 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 .maps-divider {
     border-bottom: 4px solid black;
     display: block;
@@ -79,7 +83,6 @@ a, .btn-link {
     background-color: #F96302;
     color: #FFFFFF;
     text-shadow: 2px 2px black;
-    cursor: pointer;
 }
     .maps-header div {
         padding-top: 5px;
@@ -90,7 +93,6 @@ a, .btn-link {
 .maps-nav {
     background-color: #FFFFFF;
     color: #000000;
-    cursor: pointer;
 }
     .maps-nav div {
         border-left: 1px solid black;
