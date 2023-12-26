@@ -8,6 +8,12 @@ html, body {
     overflow: hidden;
 }
 
+body {
+    background: linear-gradient(to bottom right, #001f3f -10%, #ffffff 20%, #001f3f 180%);
+    margin: 0;
+    height: 100vh;
+}
+
 h1:focus {
     outline: none;
 }
@@ -118,6 +124,7 @@ a, .btn-link {
     margin: .5rem .5rem;
     background-color: #F96302;
     color: #FFFFFF;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
 }
     .daily-expectations div {
         text-shadow: 2px 2px black;
@@ -145,3 +152,37 @@ a, .btn-link {
         .daily-expectations-content div {
             margin-top: 1rem;
         }
+
+.create-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    margin-top: 4rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.create-form-label {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.create-form input,
+.create-form textarea,
+.create-form select {
+    width: 100%;
+    padding: 0.3rem;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+}
+
+.create-form button {
+    margin-top: 1.5rem;
+}

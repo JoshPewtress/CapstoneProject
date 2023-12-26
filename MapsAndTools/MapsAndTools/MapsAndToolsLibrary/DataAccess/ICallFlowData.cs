@@ -1,5 +1,4 @@
-﻿
-namespace MapsAndToolsLibrary.DataAccess;
+﻿namespace MapsAndToolsLibrary.DataAccess;
 
 public interface ICallFlowData
 {
@@ -7,6 +6,7 @@ public interface ICallFlowData
 	Task<List<CallFlowModel>> GetAllCallFlows();
 	Task<CallFlowModel> GetCallFlow(string id);
 	Task<List<CallFlowModel>> GetChildSteps(string id);
+	Task AddChildStep(string parentId, CallFlowModel childStep);
 	Task DeleteCallFlow(string id);
 	Task UpdateCallFlow(CallFlowModel callFlow);
 }

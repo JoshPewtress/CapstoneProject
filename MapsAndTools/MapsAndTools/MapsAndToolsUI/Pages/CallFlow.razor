@@ -1,10 +1,37 @@
 ﻿@page "/CallFlow"
+@inject ICallFlowData callFlowData
 
 <div class="container-fluid">
 	<Header />
 	<h1>Call Flow</h1>
+	@if (callFlows is not null)
+	{
+		@foreach (var c in callFlows)
+		{
+			<div>
+				<div>@c.Title</div>
+				@if (c.IsActive)
+				{
+					<div>
+						@foreach (var child in c.ChildSteps)
+						{
+							<div>
+								<div>@child.Title</div>
+							</div>
+						}
+					</div>
+				}
+			</div>
+		}
+	}	
 </div>
 
 @code {
+	private List<CallFlowModel> callFlows;
+	private CallFlowModel callFlow = new();
 
+	protected override async Task OnInitializedAsync()
+	{
+		callFlows = await callFlowData.GetAllCallFlows();
+	}
 }

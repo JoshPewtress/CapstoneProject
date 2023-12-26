@@ -38,6 +38,14 @@ public class MongoCallFlowData : ICallFlowData
 		return results.ToList();
 	}
 
+	public async Task AddChildStep(string parentId, CallFlowModel childStep)
+	{
+		var parentFilter = Builders<CallFlowModel>.Filter.Eq(c => c.Id, parentId);
+		var update = Builders<CallFlowModel>.Update.Push(c => c.ChildSteps, childStep);
+
+		await _callFlows.UpdateOneAsync(parentFilter, update);
+	}
+
 	public Task CreateCallFlow(CallFlowModel callFlow)
 	{
 		return _callFlows.InsertOneAsync(callFlow);
