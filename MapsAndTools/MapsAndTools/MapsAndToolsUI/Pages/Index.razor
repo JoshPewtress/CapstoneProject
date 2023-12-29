@@ -13,8 +13,9 @@
 		<div class="col-3">
 			<div class="daily-expectations text-center">
 				<div>
-					<h3 class="pt-1">Daily Expectations</h3>
+					<h3 class="pt-3">Daily Expectations</h3>
 				</div>
+				<div class="daily-expectations-bar"></div>
 				<div>
 					@if (expectations is not null)
 					{
@@ -22,7 +23,7 @@
 						{
 							<div class="daily-expectations-titles mb-1" @onclick="(() => OnExpectationClick(e))">@e.Expectation</div>
 						}
-						<div class="maps-divider" />
+						<div class="daily-expectations-bar"></div>
 					}
 					<div>
 						@if (expectationContents is not null)
@@ -30,7 +31,6 @@
 							@foreach (var s in expectationContents)
 							{
 								<div class="daily-expectations-content">
-									<div>•</div>
 									<div>@s</div>
 								</div>
 							}

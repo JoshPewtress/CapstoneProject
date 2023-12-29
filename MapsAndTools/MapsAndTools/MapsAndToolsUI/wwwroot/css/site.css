@@ -93,14 +93,6 @@ a, .btn-link {
     cursor: pointer;
 }
 
-.maps-divider {
-    border-bottom: 4px solid black;
-    display: block;
-    width: 90%;
-    margin-left: 1rem;
-    margin-top: .5rem;
-}
-
 .maps-header {
     background-color: #F96302;
     color: #FFFFFF;
@@ -138,36 +130,51 @@ a, .btn-link {
 .daily-expectations {
     height: 800px;
     margin: .5rem .5rem;
-    background-color: #F96302;
+    background-color: #18151f;
     color: #FFFFFF;
     box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
 }
-    .daily-expectations div {
-        text-shadow: 2px 2px black;
+    .daily-expectations-bar {
+        width: 200px;
+        height: 10px;
+        margin: 1rem auto;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        transition: width 0.2s ease;
     }
+        .daily-expectations:hover .daily-expectations-bar {
+            width: 300px;
+            background-color: #0076bd;
+        }
     .daily-expectations h3 {
         font-size: 1.6rem;
     }
-        .daily-expectations h3:after {
-            content: "";
-            display: block;
-            border: 2px solid black;
-            width: 90%;
-            margin-left: 1rem;
-            margin-top: .3rem;
-        }
-    .daily-expectations-titles {
+    .daily-expectations-titles:hover {
         cursor: pointer;
+        color: #F96302;
+        font-style: italic;
     }
     .daily-expectations-content {
         font-size: .8rem;
-        width: 80%;
-        display: inline-grid;
-        grid-template-columns: 25px 1fr;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        margin: 0 1rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
     }
+
         .daily-expectations-content div {
             margin-top: 1rem;
+            display: flex;
+            align-items: baseline;
+            text-align: left;
         }
+
+            .daily-expectations-content div::before {
+                content: '\2022';
+                margin-right: 0.5rem;
+            }
 
 .create-form {
     display: flex;
