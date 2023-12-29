@@ -44,14 +44,14 @@
                     <h1 class="h1-card text-center" id="cardHeaderTitle">Solution</h1>
 
                     <article class="postcard dark blue">
-                        <a class="postcard-img-link" href="#">
+                        <a class="postcard-img-link">
                             <img class="postcard-img" src="images/SolutionPicture.jpg" alt="Image Title" />
                         </a>
                         <div class="postcard-text">
                             @if (currentModel is not null)
                             {
                                 <h1 class="postcard-title blue">
-                                    <a href="#">@currentModel.Title</a>
+                                    <a>@currentModel.Title</a>
                                 </h1>
                                 <div class="postcard-bar"></div>
                                 <div class="postcard-preview-txt">@currentModel.Description</div>
@@ -59,7 +59,7 @@
                             else
                             {
                                 <h1 class="postcard-title blue">
-                                    <a href="#">Select a call type</a>
+                                    <a>Select a call type</a>
                                 </h1>
                                 <div class="postcard-bar"></div>
                                 <div class="postcard-preview-txt">This will fill in with the process to take to finish the call</div>
