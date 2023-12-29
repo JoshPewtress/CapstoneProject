@@ -71,21 +71,21 @@
 	private async Task FilterFdcs()
 	{
 
-		var filterdFdcs = await fdcData.GetAllFdcs();
+		var filteredFdcs = await fdcData.GetAllFdcs();
 
 		if (!string.IsNullOrWhiteSpace(searchText))
 		{
-			filterdFdcs = filterdFdcs.Where(
+			filteredFdcs = filteredFdcs.Where(
 				f => f.FdcId.Contains(searchText, StringComparison.InvariantCultureIgnoreCase) ||
 				f.FdcName.Contains(searchText, StringComparison.InvariantCultureIgnoreCase)
 			).ToList();
 		}
 		else
 		{
-			filterdFdcs = await fdcData.GetAllFdcs();
+			filteredFdcs = await fdcData.GetAllFdcs();
 		}
 
-		allFdcs = filterdFdcs;
+		allFdcs = filteredFdcs;
 	}
 
 	private async Task OnKeyDown(KeyboardEventArgs keyEvent)

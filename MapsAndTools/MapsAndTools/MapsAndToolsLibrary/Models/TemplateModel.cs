@@ -8,4 +8,5 @@ public class TemplateModel
 	public string Title { get; set; }
 	public string SubjectLine { get; set; }
 	public string Body { get; set; }
+	public string Note { get; set; }
 }
