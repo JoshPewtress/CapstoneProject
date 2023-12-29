@@ -127,6 +127,7 @@ a, .btn-link {
     max-height: 800px;
     margin: .5rem 1rem;
     border: 5px outset #F96302;
+    background-color: #18151f;
 }
 
 .daily-expectations {
