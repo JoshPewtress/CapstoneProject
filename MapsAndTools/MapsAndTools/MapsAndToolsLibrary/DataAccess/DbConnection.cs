@@ -13,7 +13,6 @@ public class DbConnection : IDbConnection
 	public string CallFlowCollectionName { get; private set; } = "callflows";
 	public string FdcCollectionName { get; private set; } = "fdcs";
 	public string TemplateCollectionName { get; private set; } = "templates";
-	public string TeamMemberCollectionName { get; private set; } = "teammembers";
 	public string KbCollectionName { get; private set; } = "kbs";
 	public string DailyExpectationCollectionName { get; private set; } = "expectations";
 
@@ -21,7 +20,6 @@ public class DbConnection : IDbConnection
 	public IMongoCollection<CallFlowModel> CallFlowCollection { get; private set; }
 	public IMongoCollection<FdcModel> FdcCollection { get; private set; }
 	public IMongoCollection<TemplateModel> TemplateCollection { get; private set; }
-	public IMongoCollection<TeamMemberModel> TeamMemberCollection { get; private set; }
 	public IMongoCollection<KbArticleModel> KbArticleCollection { get; private set; }
 	public IMongoCollection<DailyExpectationModel> DailyExpectationCollection { get; private set; }
 
@@ -35,7 +33,6 @@ public class DbConnection : IDbConnection
 		CallFlowCollection = _db.GetCollection<CallFlowModel>(CallFlowCollectionName);
 		FdcCollection = _db.GetCollection<FdcModel>(FdcCollectionName);
 		TemplateCollection = _db.GetCollection<TemplateModel>(TemplateCollectionName);
-		TeamMemberCollection = _db.GetCollection<TeamMemberModel>(TeamMemberCollectionName);
 		KbArticleCollection = _db.GetCollection<KbArticleModel>(KbCollectionName);
 		DailyExpectationCollection = _db.GetCollection<DailyExpectationModel>(DailyExpectationCollectionName);
 	}

@@ -1,10 +1,26 @@
 ﻿@page "/KbArticle"
+@inject IKbArticleData kbData
+@inject NavigationManager navManager
 
 <div class="container-fluid">
 	<Header />
-	<h1>KbArticle</h1>
+
+
 </div>
 
 @code {
+	private List<KbArticleModel> kbArticles = new();
+	private KbArticleModel workingModel = new();
 
+	protected override async Task OnInitializedAsync()
+	{
+		kbArticles = await kbData.GetAllArticles();
+	}
+
+	private async Task CreateKb()
+	{
+		await kbData.CreateArticle(workingModel);
+
+		navManager.NavigateTo("/");
+	}
 }

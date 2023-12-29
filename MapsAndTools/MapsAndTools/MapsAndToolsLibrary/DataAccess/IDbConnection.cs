@@ -13,8 +13,6 @@ public interface IDbConnection
 	string FdcCollectionName { get; }
 	IMongoCollection<KbArticleModel> KbArticleCollection { get; }
 	string KbCollectionName { get; }
-	IMongoCollection<TeamMemberModel> TeamMemberCollection { get; }
-	string TeamMemberCollectionName { get; }
 	IMongoCollection<TemplateModel> TemplateCollection { get; }
 	string TemplateCollectionName { get; }
 }
