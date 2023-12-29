@@ -121,15 +121,18 @@ a, .btn-link {
     }
 
 .weekly-video {
-    width: 1300px;
-    height: 800px;
+    width: 90%;
+    height: 200%;
+    max-width: 1300px;
+    max-height: 800px;
     margin: .5rem 1rem;
     border: 5px outset #F96302;
 }
 
 .daily-expectations {
-    height: 800px;
+    height: auto;
     margin: .5rem .5rem;
+    padding-bottom: 1rem;
     background-color: #18151f;
     color: #FFFFFF;
     box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
@@ -497,8 +500,4 @@ a, a:hover {
 .table-bordered > tbody > tr:nth-of-type(odd) {
     background-color: #FFFFFF;
     color: #18151f;
-}
-
-@media (min-width: 1200) and (max-width: 1599) {
-
 }
