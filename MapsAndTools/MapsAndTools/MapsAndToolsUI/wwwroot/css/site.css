@@ -460,3 +460,34 @@ a, a:hover {
     .template-contents-note {
         align-self: flex-end;
     }
+
+
+/* KB Articles */
+.kb-table {
+    width: 98%;
+    margin: 2rem auto;
+    box-shadow: 5px 5px rgba(0, 0, 0, .7);
+}
+    .kb-table-data:hover {
+        color: #F96302;
+    }
+
+.kb-table-headers {
+    background-color: #18151f;
+    color: #FFFFFF;
+    text-decoration: underline;
+    font-weight: 700;
+    font-style: italic;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3rem;
+}
+
+.table-bordered > tbody > tr:nth-of-type(even) {
+    background-color: #18151f;
+    color: #FFFFFF;
+}
+
+.table-bordered > tbody > tr:nth-of-type(odd) {
+    background-color: #FFFFFF;
+    color: #18151f;
+}
