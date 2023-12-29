@@ -498,3 +498,7 @@ a, a:hover {
     background-color: #FFFFFF;
     color: #18151f;
 }
+
+@media (min-width: 1200) and (max-width: 1599) {
+
+}
