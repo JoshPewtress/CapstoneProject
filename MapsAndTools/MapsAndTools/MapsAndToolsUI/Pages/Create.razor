@@ -13,7 +13,6 @@
 
                 <div class="form-group">
                     <label class="create-form-label" for="newCallFlow.CallType">Call Type</label>
-                    @* <InputText id="newCallFlow.CallType" @bind-Value="newCallFlow.CallType" /> *@
                     <select id="newCallFlow.CallType" @bind="newCallFlow.CallType">
                         <option value="">-- Select A Call Type --</option>
                         @foreach (var value in Enum.GetValues(typeof(CallTypeModel.CallType)))
@@ -63,14 +62,9 @@
 
     private async Task CreateCallFlow()
     {
+        newCallFlow.ParentId = parentCallFlowId;
         await callFlowData.CreateCallFlow(newCallFlow);
 
-        if (!string.IsNullOrEmpty(parentCallFlowId))
-        {
-            var childStep = await callFlowData.GetCallFlow(newCallFlow.Id);
-            await callFlowData.AddChildStep(parentCallFlowId, childStep);
-        }
-
-        navManager.NavigateTo("/CallFlow"); // Redirect to the list of call flows or another page
+        navManager.NavigateTo("/"); // Redirect to the list of call flows or another page
     }
 }

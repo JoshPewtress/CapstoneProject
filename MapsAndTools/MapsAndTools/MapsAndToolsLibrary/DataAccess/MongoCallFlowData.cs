@@ -1,4 +1,6 @@
-﻿namespace MapsAndToolsLibrary.DataAccess;
+﻿using MongoDB.Bson.Serialization;
+
+namespace MapsAndToolsLibrary.DataAccess;
 
 public class MongoCallFlowData : ICallFlowData
 {
@@ -20,7 +22,7 @@ public class MongoCallFlowData : ICallFlowData
 			var results = await _callFlows.FindAsync(_ => true);
 			output = results.ToList();
 
-			_cache.Set(CacheName, output, TimeSpan.FromDays(1));
+			_cache.Set(CacheName, output, TimeSpan.FromSeconds(30));
 		}
 
 		return output;
