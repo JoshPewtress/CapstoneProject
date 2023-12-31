@@ -22,7 +22,7 @@ public class MongoCallFlowData : ICallFlowData
 			var results = await _callFlows.FindAsync(_ => true);
 			output = results.ToList();
 
-			_cache.Set(CacheName, output, TimeSpan.FromSeconds(30));
+			_cache.Set(CacheName, output, TimeSpan.FromDays(1));
 		}
 
 		return output;
